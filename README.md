@@ -1,6 +1,6 @@
-# Django-React Information System
+# Django-React Colombia Information System
 
-This project is an Information System that combines a Django backend with a React frontend. It allows users to perform various tasks and manage data through a web interface.
+This project is a livestock Information System that combines a Django backend with a React frontend. It allows the Colombia government to perform various tasks and manage data through a web interface.
 
 ## Scope
 
