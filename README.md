@@ -35,8 +35,8 @@ The database model for this application follows [Postresql]. It includes two tab
 
 The source code of the Information System is organized as follows:
 
-- `backend/`: Contains the Django backend code.
-- `frontend/`: Contains the React frontend code.
+- `django-app/`: Contains the Django backend code.
+- `react-app/`: Contains the React frontend code.
 - `docker-compose.yml`: Docker Compose file for orchestrating the deployment of the application.
 - `Dockerfile`: Dockerfile for building the Docker image of the application.
 
