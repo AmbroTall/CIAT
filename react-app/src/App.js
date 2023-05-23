@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import RiskTable from "./components/RiskTable";
 import axios from "axios";
-import { DataGrid } from "@mui/x-data-grid";
 import Report from "./components/Report";
 import Deforestation from "./components/Deforestation";
 
@@ -102,8 +101,7 @@ export default function App() {
       setAnimal(data);
 
       const res2 = await axios.get("http://0.0.0.0:8000/api/deforestation/");
-      console.log(res);
-      const data2 = res.data.map((row) => ({
+      const data2 = res2.data.map((row) => ({
         id: row.id,
         coverage: row.coverage,
         latitude: row.latitude,

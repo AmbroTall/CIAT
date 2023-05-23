@@ -1,4 +1,5 @@
 import random
+from faker import Faker
 
 from rest_framework import viewsets
 from .models import Animal, DeforestationArea
@@ -8,6 +9,43 @@ from rest_framework.response import Response
 
 class LivestockIdentificationView(APIView):
     def get(self, request):
+        fake = Faker()
+
+        coverage_options = ['Forest', 'Jungle', 'Woodland', 'Savannah', 'Mangrove']
+       
+
+        # Generate fake deforestation areas
+        deforestation_areas = []
+        for _ in range(10):
+            deforestation_areas.append(
+                (fake.latitude(), fake.longitude())
+            )
+
+        for _ in range(50):
+            latitude, longitude = fake.random_element(deforestation_areas)
+            DeforestationArea.objects.create(
+                latitude=latitude,
+                longitude=longitude,
+                coverage=random.choice(coverage_options)
+            )
+
+        # Generate fake livestock data
+        livestock_data = []
+        for _ in range(100):
+            latitude, longitude = fake.random_element(deforestation_areas)
+            livestock_data.append({
+                'owner': fake.name(),
+                'latitude': latitude,
+                'longitude': longitude
+            })
+
+        # Save fake livestock data to the database
+        for data in livestock_data:
+            Animal.objects.create(
+                owner=fake.name(),
+                latitude=data['latitude'],
+                longitude=data['longitude']
+            )
         deforestation_areas = DeforestationArea.objects.values_list('latitude', 'longitude')
         livestock_in_deforested_areas = Animal.objects.filter(
             latitude__in=[area[0] for area in deforestation_areas],
